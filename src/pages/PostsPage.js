@@ -5,9 +5,11 @@ import { PostsListView } from '../components/PostsComponents/PostsListViewCompon
 export const Posts = () => {
     return (
         <>
+            
             <h2>Posts</h2>
             <SearchSelect />
             <PostsListView />
+            
         </>
     );
 };

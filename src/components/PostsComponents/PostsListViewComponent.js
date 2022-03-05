@@ -8,7 +8,6 @@ import PostCard from './PostCardComponent';
 import styles from '../UsersComponents/UsersComponent.module.css';
 
 export const PostsListView = () => {
-    // const { loading, posts, error } = useSelector((state) => state.posts);
     const { loading, filteredPosts, error } = useSelector((state) => state.filteredPosts);
 
     return (
@@ -16,7 +15,7 @@ export const PostsListView = () => {
             {loading && <LoadingStatus />}
             {!filteredPosts && !loading && <NoResultsFound message={'Sorry, no posts found'} />}
             {error && !loading && <ErrorStatus error={error} />}
-            {filteredPosts &&
+            {!loading && filteredPosts &&
                 filteredPosts.map((post) => (
                     <Link to={`posts/${post.id}`} className={styles.itemLink} key={post.id}>
                         <PostCard key={post.id} post={post} />

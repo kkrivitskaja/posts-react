@@ -6,6 +6,7 @@ const initialState = {
     error: null,
 };
 
+
 function filteredPostsReducer(state = initialState, action) {
     switch (action.type) {
         case type.GET_POSTS_BY_USERSID_REQUESTED:
@@ -25,7 +26,7 @@ function filteredPostsReducer(state = initialState, action) {
                 loading: false,
                 error: action.message,
             };
-
+       
         default:
             return state;
     }

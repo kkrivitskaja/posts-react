@@ -9,8 +9,8 @@ function generateUrlPath() {
         getAllUsers() {
             return new URL('users', this.baseUrl);
         },
-        getAllComments() {
-            return new URL('comments', this.baseUrl);
+        getCommentsByPostId(postId) {
+            return new URL('comments', this.getPost(postId));
         },
         filterPostByUsers(userIds) {
             const tmpUrl = this.getAllPosts();
@@ -20,9 +20,7 @@ function generateUrlPath() {
             return tmpUrl;
         },
         getPost(postId) {
-            const tmpUrl = this.getAllPosts();
-            tmpUrl.searchParams.append('postId', postId);
-            return tmpUrl;
+            return new URL(postId, this.getAllPosts());
         },
     };
 }

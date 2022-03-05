@@ -9,34 +9,47 @@ export const SearchSelect = (props) => {
     const dispatch = useDispatch();
     //selected users for filtering
     const [selectedValue, setSelectedValue] = useState([]);
+    const [selectedUsers, setSelectedUsers] = useState([]);
 
-    //fetch users data for select dropdown
+        //fetch users data for select dropdown
     const data = useSelector((state) => state.users.users);
     const options = data.map((user) => ({ value: user.id, label: user.name }));
+
+
+    let isCacheLoaded = false;
     useEffect(() => {
         dispatch(getUsers());
+        const data = Array.from(JSON.parse(localStorage.getItem('selected-users')));
+        if (data.length) {
+            setSelectedUsers(data);
+            setSelectedValue(data.map((item) => item.value));
+            isCacheLoaded = true;
+            // dispatch(getFilteredPosts(selectedValue));
+        }
     }, []);
 
     useEffect(() => {
-        dispatch(getFilteredPosts(selectedValue));
+        if (!isCacheLoaded) { 
+            dispatch(getFilteredPosts(selectedValue));
+            isCacheLoaded = false;
+    }
     }, [dispatch, selectedValue]);
 
-    const { filteredPosts } = useSelector((state) => state.filteredPosts);
-    console.log('filteredPosts', filteredPosts);
+    // const { filteredPosts } = useSelector((state) => state.filteredPosts);
+    // console.log('filteredPosts', filteredPosts);
 
     //handle selected users data from select
     const selectHandler = (data) => {
+        localStorage.setItem('selected-users', JSON.stringify(data));
         setSelectedValue(data?.map((item) => item.value));
+        setSelectedUsers(data);
     };
 
-   
+    console.log('selectedUsers', selectedUsers);
+    console.log('selectedValue', selectedValue);
 
-    // const response = axios
-    //   .get(urlPaths.filterPostByUsers(selectedValue))
-    //   // .then((res) => res.data);
-    //   .then((res) => console.log(res.data));
 
-    //cusrom styles for Select
+    //custom styles for Select
     const customStyles = useMemo(
         () => ({
             option: (provided, state) => ({
@@ -72,7 +85,7 @@ export const SearchSelect = (props) => {
     return (
         <>
             <Select
-                // defaultValue={""}
+                defaultValue={selectedUsers}
                 isMulti
                 isSearchable
                 width="10px"
@@ -80,8 +93,8 @@ export const SearchSelect = (props) => {
                 className="basic-multi-select"
                 classNamePrefix="select"
                 styles={customStyles}
-                // value={selectedValue}
                 onChange={selectHandler}
+                value={selectedUsers}
                 cacheOptions
             />
         </>
