@@ -20,15 +20,12 @@ export default function App() {
      const dispatch = useDispatch();
  {const fetchData = async () => {
      await dispatch(getPosts());
-     await dispatch(getCommentsByPostId());
      await dispatch(getUsers());
  };
 
  useEffect(() => {
      fetchData();
  }, []);
-     const stat2 = useSelector((state) => state);
-     console.log('stat2', stat2);
  }
     
     return (

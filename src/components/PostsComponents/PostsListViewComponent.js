@@ -1,5 +1,5 @@
 import React from 'react';
-import LoadingStatus from '../StatusComponents/LoadingSatus';
+import LoadingStatus from '../StatusComponents/LoadingStatus';
 import ErrorStatus from '../StatusComponents/ErrorStatus';
 import NoResultsFound from '../StatusComponents/NoResultsFound';
 import { Link } from 'react-router-dom';

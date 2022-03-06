@@ -19,7 +19,7 @@ export const SingleUser = () => {
     useEffect(() => {
         fetchData();
     }, []);
-
+    console.log("single user");
     const users = useSelector((state) => state.users.users);
     const [user] = users.filter((user) => user.id.toString() === userId);
 

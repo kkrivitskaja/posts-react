@@ -7,6 +7,7 @@ import { getFilteredPosts } from '../../redux/actions/fileredPostsByUsersIdActio
 
 export const SearchSelect = (props) => {
     const dispatch = useDispatch();
+    
     //selected users for filtering
     const [selectedValue, setSelectedValue] = useState([]);
     const [selectedUsers, setSelectedUsers] = useState([]);
@@ -20,8 +21,8 @@ export const SearchSelect = (props) => {
     useEffect(() => {
         dispatch(getUsers());
         const data = JSON.parse(localStorage.getItem('selected-users'));
-        // if (data && typeof data != 'undefined') {
-        if (data){
+        
+        if (data && typeof data != 'undefined') {
             setSelectedUsers(data);
             setSelectedValue(data.map((item) => item.value));
             isCacheLoaded = true;
@@ -43,10 +44,7 @@ export const SearchSelect = (props) => {
         setSelectedUsers(data);
     };
 
-    console.log('selectedUsers', selectedUsers);
-    console.log('selectedValue', selectedValue);
-
-
+  
     //custom styles for Select
     const customStyles = useMemo(
         () => ({

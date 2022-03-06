@@ -7,7 +7,7 @@ import { urlPaths } from '../../base/urlApiPaths';
 
 function getAllCommentsByPostId(postId) {
     return axios
-        .get(urlPaths.getCommentsByPostId())
+        .get(urlPaths.getCommentsByPostId(postId))
         .then((res) => res.data)
         .catch((error) => {
             throw error;
