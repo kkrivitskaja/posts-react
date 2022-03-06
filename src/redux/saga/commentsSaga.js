@@ -3,34 +3,34 @@ import axios from 'axios';
 import * as type from '../actions/types';
 import { urlPaths } from '../../base/urlApiPaths';
 
-// url JSONPlaceholder for fetching all comments - urlPaths.getAllComments()
+// url JSONPlaceholder for fetching all comments by postId - urlPaths.getCommentsByPostId()
 
-function getAllComments() {
+function getAllCommentsByPostId(postId) {
     return axios
-        .get(urlPaths.getAllComments())
+        .get(urlPaths.getCommentsByPostId())
         .then((res) => res.data)
         .catch((error) => {
             throw error;
         });
 }
 
-function* fetchAllComments() {
+function* fetchAllCommentsByPostId(action) {
     try {
-        const comments = yield call(getAllComments);
+        const comments = yield call(getAllCommentsByPostId, action.payload);
         yield put({
-            type: type.GET_ALL_COMMENTS_SUCCESS,
-            comments: comments
+            type: type.GET_ALL_COMMENTS_BY_POSTID_SUCCESS,
+            comments: comments,
         });
     } catch (error) {
         yield put({
-            type: type.GET_ALL_COMMENTS_FAILED,
+            type: type.GET_ALL_COMMENTS_BY_POSTID_FAILED,
             message: error.message,
         });
     }
 }
 
 function* commentsSaga() {
-    yield takeEvery(type.GET_ALL_COMMENTS_REQUESTED, fetchAllComments);
+    yield takeEvery(type.GET_ALL_COMMENTS_BY_POSTID_REQUESTED, fetchAllCommentsByPostId);
 }
 
 export default commentsSaga;

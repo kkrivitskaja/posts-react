@@ -8,18 +8,18 @@ const initialState = {
 
 function commentsReducer(state = initialState, action) {
     switch (action.type) {
-        case type.GET_ALL_COMMENTS_REQUESTED:
+        case type.GET_ALL_COMMENTS_BY_POSTID_REQUESTED:
             return {
                 ...state,
                 loading: true,
             };
-        case type.GET_ALL_COMMENTS_SUCCESS:
+        case type.GET_ALL_COMMENTS_BY_POSTID_SUCCESS:
             return {
                 ...state,
                 loading: false,
                     comments: action.comments,
             };
-        case type.GET_ALL_POSTS_FAILED:
+        case type.GET_ALL_COMMENTS_BY_POSTID_FAILED:
             return {
                 ...state,
                 loading: false,

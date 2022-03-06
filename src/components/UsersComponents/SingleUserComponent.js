@@ -21,7 +21,7 @@ export const SingleUser = () => {
     }, []);
 
     const users = useSelector((state) => state.users.users);
-    const user = users.filter((user) => user.id.toString() === userId);
+    const [user] = users.filter((user) => user.id.toString() === userId);
 
     console.log(users, userId, user);
 
@@ -29,12 +29,14 @@ export const SingleUser = () => {
 
     console.log(posts);
     const postsByUser = posts.filter((post) => post.userId.toString() === userId);
+    // тут вызвать фильтр постов по пользователям переписать
+    
 
     console.log(postsByUser);
 
     return (
         <>
-            <h3> Posts by {user[0].name}:</h3>
+            <h3> Posts by {user.name}:</h3>
             {postsByUser &&
                 postsByUser.map((post) => (
                     <Link to={`posts/${post.id}`} className={styles.itemLink} key={post.id}>

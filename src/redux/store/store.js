@@ -10,7 +10,7 @@ const sagaMiddleware = createSagaMiddleware();
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['filteredPosts'],
+    // whitelist: ['filteredPosts'],
     // stateReconciler: autoMergeLevel2,
 };
 

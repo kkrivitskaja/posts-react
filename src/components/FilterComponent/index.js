@@ -11,7 +11,7 @@ export const SearchSelect = (props) => {
     const [selectedValue, setSelectedValue] = useState([]);
     const [selectedUsers, setSelectedUsers] = useState([]);
 
-        //fetch users data for select dropdown
+    //fetch users data for select dropdown
     const data = useSelector((state) => state.users.users);
     const options = data.map((user) => ({ value: user.id, label: user.name }));
 
@@ -19,12 +19,12 @@ export const SearchSelect = (props) => {
     let isCacheLoaded = false;
     useEffect(() => {
         dispatch(getUsers());
-        const data = Array.from(JSON.parse(localStorage.getItem('selected-users')));
-        if (data.length) {
+        const data = JSON.parse(localStorage.getItem('selected-users'));
+        // if (data && typeof data != 'undefined') {
+        if (data){
             setSelectedUsers(data);
             setSelectedValue(data.map((item) => item.value));
             isCacheLoaded = true;
-            // dispatch(getFilteredPosts(selectedValue));
         }
     }, []);
 
@@ -35,9 +35,7 @@ export const SearchSelect = (props) => {
     }
     }, [dispatch, selectedValue]);
 
-    // const { filteredPosts } = useSelector((state) => state.filteredPosts);
-    // console.log('filteredPosts', filteredPosts);
-
+   
     //handle selected users data from select
     const selectHandler = (data) => {
         localStorage.setItem('selected-users', JSON.stringify(data));

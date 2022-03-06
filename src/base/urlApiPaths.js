@@ -22,5 +22,9 @@ function generateUrlPath() {
         getPost(postId) {
             return new URL(postId, this.getAllPosts());
         },
+        getUser(userId) {
+             return new URL(userId, this.getAllUsers());
+        },
+        
     };
 }

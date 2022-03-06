@@ -15,7 +15,9 @@ export const PostsListView = () => {
             {loading && <LoadingStatus />}
             {!filteredPosts && !loading && <NoResultsFound message={'Sorry, no posts found'} />}
             {error && !loading && <ErrorStatus error={error} />}
-            {!loading && filteredPosts &&
+            {!loading &&
+                !error &&
+                filteredPosts &&
                 filteredPosts.map((post) => (
                     <Link to={`posts/${post.id}`} className={styles.itemLink} key={post.id}>
                         <PostCard key={post.id} post={post} />
