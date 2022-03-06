@@ -2,15 +2,16 @@ import React, { useMemo, useState, useEffect } from 'react';
 import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUsers } from '../../redux/actions/userActions';
-import { getFilteredPosts } from '../../redux/actions/fileredPostsByUsersIdActions';
-
+import { getFilteredPosts } from '../../redux/actions/filterPostsByUsersIdActions';
+import { useLocalStorage } from '../../base/useLocalStorage';
 
 export const SearchSelect = (props) => {
     const dispatch = useDispatch();
-    
+  
+
     //selected users for filtering
-    const [selectedValue, setSelectedValue] = useState([]);
-    const [selectedUsers, setSelectedUsers] = useState([]);
+
+    const [selectedUsers, setSelectedUsers] = useLocalStorage('selected-users', '');
 
     //fetch users data for select dropdown
     const data = useSelector((state) => state.users.users);
@@ -19,28 +20,26 @@ export const SearchSelect = (props) => {
 
     let isCacheLoaded = false;
     useEffect(() => {
-        dispatch(getUsers());
+        dispatch(getUsers());/*
         const data = JSON.parse(localStorage.getItem('selected-users'));
         
         if (data && typeof data != 'undefined') {
             setSelectedUsers(data);
             setSelectedValue(data.map((item) => item.value));
             isCacheLoaded = true;
-        }
+        }*/
     }, []);
 
     useEffect(() => {
-        if (!isCacheLoaded) { 
-            dispatch(getFilteredPosts(selectedValue));
-            isCacheLoaded = false;
-    }
-    }, [dispatch, selectedValue]);
+        /*if (!isCacheLoaded) { */
+        dispatch(getFilteredPosts(selectedUsers?.map((item) => item.value)));
+        /* isCacheLoaded = false;
+    }*/
+    }, [dispatch, selectedUsers]);
 
    
     //handle selected users data from select
     const selectHandler = (data) => {
-        localStorage.setItem('selected-users', JSON.stringify(data));
-        setSelectedValue(data?.map((item) => item.value));
         setSelectedUsers(data);
     };
 

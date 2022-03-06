@@ -19,25 +19,20 @@ export const SingleUser = () => {
     useEffect(() => {
         fetchData();
     }, []);
-    console.log("single user");
+
     const users = useSelector((state) => state.users.users);
     const [user] = users.filter((user) => user.id.toString() === userId);
 
-    console.log(users, userId, user);
-
     let posts = useSelector((state) => state.posts.posts);
 
-    console.log(posts);
     const postsByUser = posts.filter((post) => post.userId.toString() === userId);
     // тут вызвать фильтр постов по пользователям переписать
-    
-
-    console.log(postsByUser);
 
     return (
         <>
-            <h3> Posts by {user.name}:</h3>
-            {postsByUser &&
+            {!user ? <p>User not found</p> : <h3> Posts by {user.name}:</h3>}
+            {user &&
+                postsByUser &&
                 postsByUser.map((post) => (
                     <Link to={`posts/${post.id}`} className={styles.itemLink} key={post.id}>
                         <PostCard key={post.id} post={post} />
