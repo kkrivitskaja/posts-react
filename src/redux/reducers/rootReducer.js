@@ -13,6 +13,7 @@ const rootReducer = combineReducers({
     comments: commentsReducer,
     filteredPosts: filteredPostsReducer,
     postById: postByIdReducer,
+    
 });
 
 export default rootReducer;

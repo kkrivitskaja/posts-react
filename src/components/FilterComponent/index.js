@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUsers } from '../../redux/actions/userActions';
@@ -7,43 +7,27 @@ import { useLocalStorage } from '../../base/useLocalStorage';
 
 export const SearchSelect = (props) => {
     const dispatch = useDispatch();
-  
 
-    //selected users for filtering
-
-    const [selectedUsers, setSelectedUsers] = useLocalStorage('selected-users', '');
+    //selected users for filtering with custom hook useLocalStorage()
+    const [selectedUsers, setSelectedUsers] = useLocalStorage('selected-users', []);
 
     //fetch users data for select dropdown
     const data = useSelector((state) => state.users.users);
     const options = data.map((user) => ({ value: user.id, label: user.name }));
 
-
-    let isCacheLoaded = false;
     useEffect(() => {
-        dispatch(getUsers());/*
-        const data = JSON.parse(localStorage.getItem('selected-users'));
-        
-        if (data && typeof data != 'undefined') {
-            setSelectedUsers(data);
-            setSelectedValue(data.map((item) => item.value));
-            isCacheLoaded = true;
-        }*/
+        dispatch(getUsers());
     }, []);
 
     useEffect(() => {
-        /*if (!isCacheLoaded) { */
         dispatch(getFilteredPosts(selectedUsers?.map((item) => item.value)));
-        /* isCacheLoaded = false;
-    }*/
     }, [dispatch, selectedUsers]);
 
-   
     //handle selected users data from select
     const selectHandler = (data) => {
         setSelectedUsers(data);
     };
 
-  
     //custom styles for Select
     const customStyles = useMemo(
         () => ({

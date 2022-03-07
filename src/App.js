@@ -8,11 +8,8 @@ import { PageNotFound } from './pages/PageNotFound';
 import { Navbar } from './components/Navbar/index';
 import { SingleUser } from './components/UsersComponents/SingleUserComponent';
 import { SinglePost } from './components/PostsComponents/SinglePostComponent';
-
-
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getPosts } from './redux/actions/postsActions';
-import { getCommentsByPostId } from './redux/actions/commentsActions';
 import { getUsers } from './redux/actions/userActions';
 import React, { useEffect} from 'react';
 

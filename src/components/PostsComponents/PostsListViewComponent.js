@@ -9,12 +9,14 @@ import styles from '../UsersComponents/UsersComponent.module.css';
 
 export const PostsListView = () => {
     const { loading, filteredPosts, error } = useSelector((state) => state.filteredPosts);
+    const message = 'Sorry, Something went terribly wrong. Fail to fetch posts data.';
+    console.log("This is error", error)
 
     return (
         <>
             {loading && <LoadingStatus />}
             {!filteredPosts && !loading && <NoResultsFound message={'Sorry, no posts found'} />}
-            {error && !loading && <ErrorStatus error={error} />}
+            {error && !loading && <ErrorStatus error={error} message={ message}/>}
             {!loading &&
                 !error &&
                 filteredPosts &&
