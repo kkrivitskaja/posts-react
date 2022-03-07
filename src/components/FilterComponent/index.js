@@ -6,10 +6,9 @@ import { getUsers } from '../../redux/actions/userActions';
 import { getFilteredPosts } from '../../redux/actions/filterPostsByUsersIdActions';
 import { useLocalStorage } from '../../base/useLocalStorage';
 
-
 export const SearchSelect = () => {
     const dispatch = useDispatch();
-
+    let isCacheLoaded = false;
     //selected users for filtering with custom hook useLocalStorage()
     const [selectedUsers, setSelectedUsers] = useLocalStorage('selected-users', []);
 
@@ -19,10 +18,14 @@ export const SearchSelect = () => {
 
     useEffect(() => {
         dispatch(getUsers());
+        isCacheLoaded = true;
     }, []);
 
     useEffect(() => {
-        dispatch(getFilteredPosts(selectedUsers?.map((item) => item.value)));
+        if (!isCacheLoaded) {
+            isCacheLoaded = false;
+            dispatch(getFilteredPosts(selectedUsers?.map((item) => item.value)));
+        }
     }, [dispatch, selectedUsers]);
 
     //handle selected users data from select
@@ -43,14 +46,14 @@ export const SearchSelect = () => {
             }),
             control: (provided) => ({
                 ...provided,
-                width: 700,
+                maxWidth: 600,
             }),
             container: (provided) => ({
                 ...provided,
-                width: 700,
+                maxWidth: 600,
                 marginTop: 30,
                 marginBottom: 50,
-                boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
+                boxShadow: 'rgba(151, 149, 158, 0.35) 0px 5px 15px;',
                 marginLeft: 'auto',
                 marginRight: 'auto',
                 borderRadius: 5,

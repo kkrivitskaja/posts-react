@@ -14,7 +14,7 @@ export const Users = () => {
     const dispatch = useDispatch();
     const { loading, users, error } = useSelector((state) => state.users);
     const message = 'Sorry, Something went terribly wrong. Fail to fetch users data.';
-    
+
     useEffect(() => {
         dispatch(getUsers());
     }, []);

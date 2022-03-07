@@ -1,6 +1,6 @@
 .card {
     margin: 10px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: rgba(151, 149, 158, 0.35) 0px 5px 15px;
     border-radius: 10px;
     cursor: pointer;
     max-width: 600px;
@@ -12,6 +12,10 @@
     box-shadow: 1px 1px 10px #2c3d82;
 }
 
-.cardBody {
+.cardBody  {
     padding: 10px;
+}
+
+.cardBody h3{
+    text-align: left;
 }
