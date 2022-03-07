@@ -3,13 +3,14 @@ import axios from 'axios';
 import * as type from '../actions/types';
 import { urlPaths } from '../../base/urlApiPaths';
 
-// url JSONPlaceholder for fetching all posts - urlPaths.getAllPosts()
+// url JSONPlaceholder for fetching filtered posts by users id - urlPaths.filterPostByUsers(usersIds)
 //generates url https://jsonplaceholder.typicode.com/posts?userId=1&userId=2 – filter posts by users
 //usersIds comes from search field
 function getFilteredPosts(usersIds) {
     axios.defaults.timeout = 100000;
     return axios
-        .get(urlPaths.filterPostByUsers(usersIds), {mode:"no-cors",
+        .get(urlPaths.filterPostByUsers(usersIds), {
+            mode: 'no-cors',
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Content-Type': 'application/json',
@@ -17,7 +18,7 @@ function getFilteredPosts(usersIds) {
         })
         .then((res) => res.data)
         .catch((error) => {
-                    console.log(error);
+            console.log(error);
             throw error;
         });
 }
@@ -30,7 +31,6 @@ function* fetchFilteredPosts(action) {
             filteredPosts: filteredPosts,
         });
     } catch (error) {
-
         yield put({
             type: type.GET_POSTS_BY_USERS_ID_FAILED,
             message: error.message,

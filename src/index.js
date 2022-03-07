@@ -2,11 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+import store, { persistor } from './redux/store/store';
 
 import './index.css';
 import App from './App';
-import store, { persistor } from './redux/store/store';
-
 
 ReactDOM.render(
     <React.StrictMode>
@@ -18,8 +17,3 @@ ReactDOM.render(
     </React.StrictMode>,
     document.getElementById('root')
 );
-
-
-
-
-

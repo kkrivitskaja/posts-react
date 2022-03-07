@@ -11,20 +11,21 @@ import { SinglePost } from './components/PostsComponents/SinglePostComponent';
 import { useDispatch } from 'react-redux';
 import { getPosts } from './redux/actions/postsActions';
 import { getUsers } from './redux/actions/userActions';
-import React, { useEffect} from 'react';
+import React, { useEffect } from 'react';
 
 export default function App() {
-     const dispatch = useDispatch();
- {const fetchData = async () => {
-     await dispatch(getPosts());
-     await dispatch(getUsers());
- };
+    const dispatch = useDispatch();
+    {
+        const fetchData = async () => {
+            await dispatch(getPosts());
+            await dispatch(getUsers());
+        };
 
- useEffect(() => {
-     fetchData();
- }, []);
- }
-    
+        useEffect(() => {
+            fetchData();
+        }, []);
+    }
+
     return (
         <div className="App">
             <Router>

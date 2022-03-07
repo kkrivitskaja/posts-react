@@ -1,22 +1,20 @@
 import React from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 import styles from './PageNotFound.module.css';
 
-
 export const PageNotFound = () => {
-    const {pathname} = useLocation()
-    console.log('pathname', pathname);
-
     return (
         <>
-            {/* <h3>
-                No match for <code>{pathname}</code>
-            </h3> */}
-            <div className={styles.msg} >
-                Maybe this page moved? Got deleted? Is hiding out in quarantine? Never existed in
-                the first place?
+            <div className={styles.msg}>
+                <h3>404</h3>
+                <h3>OOPS! PAGE NOT BE FOUND </h3>
+                Sorry but the page you are looking for does not exist, have been removed. name
+                changed or is temporarily unavailable
                 <p>
-                    Let's go <Link to={`/`}>Main page</Link>  and try from there.
+                    <Link to={`/`} className={styles.link}>
+                        Back to Main page
+                    </Link>
                 </p>
             </div>
         </>

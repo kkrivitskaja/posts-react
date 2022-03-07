@@ -16,7 +16,6 @@
 // // const initialState = { selectedUsers: JSON.parse(localStorage.getItem('selected-users')) } || {};
 // // const initialState = loadState()
 
-
 // const store = compose(
 //     applyMiddleware(sagaMiddleware),
 //     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
@@ -33,15 +32,12 @@
 // //     }, 1000
 // // );
 
-
-
 // // (rootReducer);
 // sagaMiddleware.run(rootSaga);
 // // console.log('initialState', initialState);
 
 // export const persistor = persistStore(store);
 // export default store;
-
 
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
@@ -54,7 +50,6 @@ const sagaMiddleware = createSagaMiddleware();
 const persistConfig = {
     key: 'root',
     storage,
-   
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

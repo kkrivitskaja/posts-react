@@ -1,6 +1,7 @@
 import React from 'react';
-import errorIcon from '../../img/errorIcon.gif';
 import PropTypes from 'prop-types';
+
+import errorIcon from '../../img/errorIcon.gif';
 import styles from './ErrorStatus.module.css';
 
 const ErrorStatus = (props) => {
@@ -9,7 +10,7 @@ const ErrorStatus = (props) => {
         <div className={styles.error}>
             <img src={errorIcon} alt="errorIcon" className={styles.img} />
             <p>
-                {props.message}
+                Sorry, Something went terribly wrong. Fail to fetch {props.message} data.
                 <br />
                 {props.error}
             </p>

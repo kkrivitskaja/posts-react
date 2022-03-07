@@ -17,15 +17,15 @@ function commentsReducer(state = initialState, action) {
             return {
                 ...state,
                 loading: false,
-                    comments: action.comments,
+                comments: action.comments,
             };
         case type.GET_ALL_COMMENTS_BY_POST_ID_FAILED:
             return {
                 ...state,
                 loading: false,
-                    error: action.message,
+                error: action.message,
             };
-        
+
         default:
             return state;
     }

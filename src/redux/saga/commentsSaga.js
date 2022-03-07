@@ -1,12 +1,10 @@
-import {put, call, takeEvery } from 'redux-saga/effects';
+import { put, call, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 import * as type from '../actions/types';
 import { urlPaths } from '../../base/urlApiPaths';
 
 // url JSONPlaceholder for fetching all comments by postId - urlPaths.getCommentsByPostId()
-
 function getAllCommentsByPostId(postId) {
-
     return axios
         .get(urlPaths.getCommentsByPostId(postId))
         .then((res) => res.data)

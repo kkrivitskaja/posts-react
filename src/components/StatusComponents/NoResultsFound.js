@@ -1,13 +1,15 @@
 import React from 'react';
-import errorIcon from '../../img/errorIcon.gif';
 import PropTypes from 'prop-types';
+
+import errorIcon from '../../img/errorIcon.gif';
+import styles from './NoResultsFound.module.css';
 
 const NoResultsFound = (props) => {
     return (
-        <div>
-            {' '}
+        <div className={styles.results}>
             <img src={errorIcon} alt="errorIcon" />
-            <p>{props.message}</p>
+            <h3>OOPS! SORRY, {props.message} NOT FOUND</h3>
+            <p>Sorry but the page you are looking for does not exist</p>
         </div>
     );
 };

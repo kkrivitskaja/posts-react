@@ -1,11 +1,13 @@
 import React, { useMemo, useEffect } from 'react';
-import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
+import Select from 'react-select';
+
 import { getUsers } from '../../redux/actions/userActions';
 import { getFilteredPosts } from '../../redux/actions/filterPostsByUsersIdActions';
 import { useLocalStorage } from '../../base/useLocalStorage';
 
-export const SearchSelect = (props) => {
+
+export const SearchSelect = () => {
     const dispatch = useDispatch();
 
     //selected users for filtering with custom hook useLocalStorage()
