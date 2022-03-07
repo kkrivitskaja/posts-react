@@ -14,6 +14,10 @@
     justify-content: space-between;
 }
 
-p {
+.commentBody p {
     padding: 20px;
+}
+
+.commentBody h4{
+    padding: 10px;
 }

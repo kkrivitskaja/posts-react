@@ -11,36 +11,36 @@ export const SinglePost = () => {
      const { postId } = useParams();
     const [isShowComment, setShowComment] = useReducer((e) => !e, false);
    
-    const post = useSelector((state) => state.postById.postById);
+    const postById = useSelector((state) => state.postById.postById);
 
     // const users = useSelector((state) => state.users.users);
-    // const [user] = users.filter((user) => user.id === post.userId);
+    // const [user] = users.filter((user) => user.id === postById.userId);
 
     useEffect(() => {
-        console.log('here come');
-        console.log('in useEffect getPostById: ', postId);
+        console.log('here come in useEffect');
+        console.log('in useEffect getPostById: ', postById);
         dispatch(getPostById(postId));
-    }, [dispatch, postId]);
+    }, [dispatch, postId, postById]);
 
-    console.log('getPostById in component: ', postId);
+    console.log('getPostById in component: ', postById);
 
-    console.log('Single post ', post);
-    console.log('Single post USERID', post.userId);
+    console.log('Single postById ', postById);
+    console.log('Single post USERID', postById.userId);
 
-   // add logic for displaying user name!!!
-
-    //  console.log('Single post users value', users);
+    //    console.log('Single post users value', users);
     // console.log('Single post USER value', user);
 
     return (
         <>
             <div className={styles.post}>
-                {/* <h2>{post.title}</h2> */}
-                {/* <h2>Post by {user.name}</h2> */}
+                {/* <h3>{postById.title}</h3> */}
+                {/* <h4>Post by {user.name}</h4> */}
                 <br />
                 <div className={styles.postBody}>
-                    {/* <p>{post.body}</p> */}
-                    <button onClick={setShowComment}>Comments</button>
+                    <p>{postById.body}</p>
+                    <button onClick={setShowComment} className={styles.btn}>
+                        Comments
+                    </button>
                 </div>
             </div>
             {isShowComment ? <CommentsList postId={postId} /> : null}

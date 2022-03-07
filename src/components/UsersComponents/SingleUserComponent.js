@@ -33,8 +33,7 @@ export const SingleUser = () => {
         fetchData();
     }, []);
 
- console.log(user);
-    console.log(postsByUser);
+   
     return (
         <>
             {(loading || loadingPosts) && <LoadingStatus />}

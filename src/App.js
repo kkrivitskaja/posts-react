@@ -1,17 +1,19 @@
-import './index.css';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import { MainPage } from './pages/MainPage';
 import { Users } from './pages/UsersPage';
 import { Posts } from './pages/PostsPage';
 import { PageNotFound } from './pages/PageNotFound';
+
 import { Navbar } from './components/Navbar/index';
 import { SingleUser } from './components/UsersComponents/SingleUserComponent';
 import { SinglePost } from './components/PostsComponents/SinglePostComponent';
-import { useDispatch } from 'react-redux';
+
 import { getPosts } from './redux/actions/postsActions';
 import { getUsers } from './redux/actions/userActions';
-import React, { useEffect } from 'react';
+import './index.css';
 
 export default function App() {
     const dispatch = useDispatch();
