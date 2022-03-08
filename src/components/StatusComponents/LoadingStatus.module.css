@@ -1,0 +1,18 @@
+.loading {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}
+
+.img,
+p {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.p {
+    display: flex;
+    justify-content: center;
+}

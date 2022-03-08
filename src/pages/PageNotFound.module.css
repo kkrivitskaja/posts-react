@@ -1,0 +1,15 @@
+.msg {
+    text-align: center;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 1.6rem;
+    position: absolute;
+    left: 16%;
+    top: 25%;
+    width: 75%;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(1, 39, 121);
+    font-weight: 600;
+}
