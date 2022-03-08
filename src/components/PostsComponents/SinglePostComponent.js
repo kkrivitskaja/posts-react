@@ -12,6 +12,7 @@ export const SinglePost = () => {
     const [isShowComment, setShowComment] = useReducer((e) => !e, false);
    
     const postById = useSelector((state) => state.postById.postById);
+    const state = useSelector((state) => state);
 
     // const users = useSelector((state) => state.users.users);
     // const [user] = users.filter((user) => user.id === postById.userId);
@@ -20,8 +21,10 @@ export const SinglePost = () => {
         console.log('here come in useEffect');
         console.log('in useEffect getPostById: ', postById);
         dispatch(getPostById(postId));
-    }, [dispatch, postId, postById]);
+    }, [dispatch, postId]);
 
+
+    console.log('STATE in component: ', state);
     console.log('getPostById in component: ', postById);
 
     console.log('Single postById ', postById);
@@ -33,7 +36,7 @@ export const SinglePost = () => {
     return (
         <>
             <div className={styles.post}>
-                {/* <h3>{postById.title}</h3> */}
+                <h3>{postById.title}</h3>
                 {/* <h4>Post by {user.name}</h4> */}
                 <br />
                 <div className={styles.postBody}>
