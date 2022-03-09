@@ -7,7 +7,7 @@ import ErrorStatus from '../components/StatusComponents/ErrorStatus';
 import NoResultsFound from '../components/StatusComponents/NoResultsFound';
 
 import { getUsers } from '../redux/actions/userActions';
-import UserCard from '../components/UsersComponents/UserCardComponent';
+import UserCard from '../components/UsersComponents/UserCard';
 import styles from './UsersPage.module.css';
 
 export const Users = () => {

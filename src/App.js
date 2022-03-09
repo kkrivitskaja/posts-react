@@ -1,33 +1,27 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+
 import { useDispatch } from 'react-redux';
 
 import { MainPage } from './pages/MainPage';
-import { Users } from './pages/UsersPage';
-import { Posts } from './pages/PostsPage';
+import { Users } from './pages/Users';
+import { Posts } from './pages/Posts';
 import { PageNotFound } from './pages/PageNotFound';
 
 import { Navbar } from './components/Navbar/index';
-import { SingleUser } from './components/UsersComponents/SingleUserComponent';
-import { SinglePost } from './components/PostsComponents/SinglePostComponent';
+import { SingleUser } from './components/UsersComponents/SingleUser';
+import { SinglePost } from './components/PostsComponents/SinglePost';
 
-import { getPosts } from './redux/actions/postsActions';
 import { getUsers } from './redux/actions/userActions';
 import './index.css';
 
 export default function App() {
     const dispatch = useDispatch();
-    {
-        const fetchData = async () => {
-            await dispatch(getPosts());
-            await dispatch(getUsers());
-        };
 
-        useEffect(() => {
-            fetchData();
-        }, []);
-    }
-
+    useEffect(() => {
+        dispatch(getUsers());
+            }, []);
+   
     return (
         <div className="App">
             <Router>

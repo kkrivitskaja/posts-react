@@ -1,6 +1,7 @@
 import React from 'react';
-import styles from './PostCardComponent.module.css';
 import PropTypes from 'prop-types';
+
+import styles from './PostCard.module.css';
 
 const PostCard = (props) => {
     return (

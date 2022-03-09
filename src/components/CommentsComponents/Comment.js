@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './index.module.css';
+import styles from './Comment.module.css';
 
 export const Comment = (props) => {
     return (

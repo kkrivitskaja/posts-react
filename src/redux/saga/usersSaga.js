@@ -1,13 +1,13 @@
 import { put, call, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 import * as type from '../actions/types';
-import { urlPaths } from '../../base/urlApiPaths';
 
-// url JSONPlaceholder for fetching all users - urlPaths.getAllUsers()
+
+const baseUrl = 'https://jsonplaceholder.typicode.com/';
 
 function getAllUsers() {
     return axios
-        .get(urlPaths.getAllUsers())
+        .get(`${baseUrl}users`)
         .then((res) => res.data)
         .catch((error) => {
             throw error;

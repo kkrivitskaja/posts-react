@@ -1,14 +1,17 @@
-import React, { useMemo, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useMemo, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import Select from 'react-select';
 
-import { getUsers } from '../../redux/actions/userActions';
-import { getFilteredPosts } from '../../redux/actions/filterPostsByUsersIdActions';
 import { useLocalStorage } from '../../base/useLocalStorage';
+import { getPostsByUsersId } from '../../requests/posts';
+
+import { PostsListView } from '../PostsComponents/PostsListView';
+
 
 export const SearchSelect = () => {
-    const dispatch = useDispatch();
-    let isCacheLoaded = false;
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+
     //selected users for filtering with custom hook useLocalStorage()
     const [selectedUsers, setSelectedUsers] = useLocalStorage('selected-users', []);
 
@@ -16,22 +19,20 @@ export const SearchSelect = () => {
     const data = useSelector((state) => state.users.users);
     const options = data.map((user) => ({ value: user.id, label: user.name }));
 
-    useEffect(() => {
-        dispatch(getUsers());
-        isCacheLoaded = true;
-    }, []);
+    //fetch posts by selected users data
+    const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        if (!isCacheLoaded) {
-            isCacheLoaded = false;
-            dispatch(getFilteredPosts(selectedUsers?.map((item) => item.value)));
-        }
-    }, [dispatch, selectedUsers]);
-
-    //handle selected users data from select
-    const selectHandler = (data) => {
-        setSelectedUsers(data);
-    };
+        getPostsByUsersId(selectedUsers?.map((item) => item.value))
+            .then((res) => {
+                setError(null);
+                setPosts(res);
+                setIsLoading(false);
+            })
+            .catch((error) => {
+                setError(error.message);
+            });
+    }, [selectedUsers]);
 
     //custom styles for Select
     const customStyles = useMemo(
@@ -77,10 +78,11 @@ export const SearchSelect = () => {
                 className="basic-multi-select"
                 classNamePrefix="select"
                 styles={customStyles}
-                onChange={selectHandler}
+                onChange={setSelectedUsers}
                 value={selectedUsers}
                 cacheOptions
             />
+            {<PostsListView filterData={posts} error={error} isLoading={isLoading} />}
         </>
     );
 };

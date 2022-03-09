@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './UserCardComponent.module.css';
+import styles from './UserCard.module.css';
 
 const UserCard = (props) => {
     return (
