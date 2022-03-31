@@ -1,0 +1,14 @@
+.msg {
+    text-align: center;
+    font-size: 1.6rem;
+    position: absolute;
+    left: 16%;
+    top: 25%;
+    width: 75%;
+}
+
+h3 {
+    padding: 50px;
+    text-align: center;
+}
+

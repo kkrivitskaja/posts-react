@@ -1,0 +1,23 @@
+.comment {
+    margin: 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: rgba(151, 149, 158, 0.35) 0px 5px 15px;
+    border-radius: 5px;
+}
+
+.commentBody {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.commentBody p {
+    padding: 20px;
+}
+
+.commentBody h4{
+    padding: 10px;
+}
